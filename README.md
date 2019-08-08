@@ -12,7 +12,7 @@ Ao invés de colocar a URL do mongo direto no código, e deixar isso público no
 
 Esse projeto pode ser acessado em: https://tindevue.herokuapp.com
 
-Para que se possa fazer esse tipo de integração com o heroku, é necessário realizar alguns passos a mais em relação ao conteúdo que o daniel3g está pulicando. Sugiro que faça essa integração após terminar a 2a aula sobre frontend.
+Para que se possa fazer esse tipo de integração com o heroku, é necessário realizar alguns passos a mais em relação ao conteúdo que o diego3g está publicando. Sugiro que faça essa integração após terminar a 2a aula sobre frontend.
 
 Vou tentar resumir os passos aqui. Se tiver dúvidas pode abrir uma ISSUE que eu tento te ajudar.
 
@@ -36,7 +36,7 @@ Vou tentar resumir os passos aqui. Se tiver dúvidas pode abrir uma ISSUE que eu
 
 ![image](https://user-images.githubusercontent.com/1509692/62713807-b6587800-b9d3-11e9-8b15-cbe43f0311b0.png)
 
-- Ou seja, semre que houver um PUSH no seu projeto (branch master), o heroku vai realizar um deploy automatico.
+- Ou seja, sempre que houver um PUSH no seu projeto (branch master), o heroku vai realizar um deploy automatico.
 
 ### Configurando o deploy
 
