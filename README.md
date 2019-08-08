@@ -48,4 +48,28 @@ A parte de configuração do deploy é formada por duas partes. Primeiro, config
 
 - Após definir as variáveis de ambiente, é preciso compreender que o Heroku executa dois comandos internos na sua aplicação. São eles: `npm run build` e `npm start`. Esses dois comandos estão no `package.json` do projeto (e nao da pasta frontend ou backend) 
 
+    - O comando `npm run build` realiza uma série de ações:
+
+    ```
+    cd backend && npm install && cd .. && cd frontend && npm install && npm run build && cd ..
+    ```
+
+    Estas ações são:
+
+    1 - Ir no diretório backend e executar `npm install`
+    2 - Ir no diretório frontend e executar `npm install`
+    3 - Ainda no diretório frontend, executar `npm run build` para compilar a aplicação 
+
+    - O comando `npm start` irá iniciar o servidor `backend`
+
+![image](https://user-images.githubusercontent.com/1509692/62714711-772b2680-b9d5-11e9-83be-5027fe5a482c.png)
+
+- Para finalizar o entendimento do Deploy no Heroku, é preciso analisar algumas muduanças no arquivo `backend/src/index.js`:
+
+![image](https://user-images.githubusercontent.com/1509692/62714901-cbcea180-b9d5-11e9-84b4-122909c3b175.png)
+
+Em **1** incluímos a biblioiteca `dotenv`. Ela é responsável em pegar valores do arquivo `.env` ou das configurações do heroku. Por exemplo, usamos em **2** o DB_URI. Em **3** configuramos o que chamamos de "Servidor estático". O servidor estático está apontado para `__dirname + "/../../frontend/dist"` que é justamente o diretório compilado da aplicação que foi gerada pelo `npm run build` do frontend. Em **4** configuramos uma porta, que pode ser a porta do servidor heroku (process.env.PORT) ou a porta 9999. 
+
+Após realizar esses passos e entender como funciona, basta fazer um PUSH no seu código do github para ver o heroku trabalhando sozinho no deploy:
+
 
