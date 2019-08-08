@@ -1,0 +1,20 @@
+{
+  "name": "tindev",
+  "version": "1.0.0",
+  "description": "Um \"tinder\" para devs utilizando VueJS e Vue Native e NodeJS.",
+  "scripts": {
+    "start": "cd backend && node src/index.js",
+    "build": "cd backend && npm install && cd .. && cd frontend && npm install && npm run build && cd .."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielschmitz/tindev.git"
+  },
+  "keywords": [],
+  "author": "Daniel Schmitz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/danielschmitz/tindev/issues"
+  },
+  "homepage": "https://https://tindevue.herokuapp.com/"
+}
