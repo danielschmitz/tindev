@@ -72,4 +72,7 @@ Em **1** incluímos a biblioiteca `dotenv`. Ela é responsável em pegar valores
 
 Após realizar esses passos e entender como funciona, basta fazer um PUSH no seu código do github para ver o heroku trabalhando sozinho no deploy:
 
+![image](https://user-images.githubusercontent.com/1509692/62715291-96768380-b9d6-11e9-993d-f914f15ba573.png)
+
+Ao terminar o build, se aparecer a mensagem `Build succeeded`, basta clicar no botão `Open app` para ver sua aplicação sendo executada.
 
