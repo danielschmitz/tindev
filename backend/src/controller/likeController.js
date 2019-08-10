@@ -12,7 +12,7 @@ module.exports = {
       return res.status(400).json({ erro: "Desenvolvedor não existe" });
     }
 
-    req.io.emit('message', { title: "<3", message: `${loggedDev.nome} curtiu ${targetDev.nome} ` })
+    req.io.emit('message', { title: "❤", message: `${loggedDev.nome} curtiu ${targetDev.nome} ` })
 
 
     if (targetDev.likes.includes(loggedDev._id)) {
