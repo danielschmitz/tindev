@@ -23,22 +23,40 @@
     <div v-else class="empty">
       Acabou :(
     </div>
+    <div v-if="itsamatch" class="match-container">
+      <img src="../assets/itsamatch.png" alt="Its a match"/>
+      <img class="avatar" :src="matchDev.img" :alt="matchDev.name"/>
+      <strong>{{matchDev.name}}</strong>
+      <button type="button" @click="onButtonCloseClick">Fechar</button>
+    </div>
   </div>
 </template>
 
 <script>
 import api from '../servicos/api'
+import io from 'socket.io-client'
+
 export default {
   name: 'Main',
   data: function () {
     return {
-      usuarios: []
+      usuarios: [],
+      itsamatch: true,
+      matchDev: {}
     }
   },
   computed: {
     id: function () { return this.$route.params.id }
   },
   async mounted () {
+    // const socket = io(process.env.VUE_APP_API, {
+    //   query: { user: this.id }
+    // })
+
+    // socket.on('match', dev => {
+    //   console.log(dev)
+    // })
+
     const resposta = await api.get('/devs', { headers: {
       usuario: this.id
     } })
@@ -134,5 +152,18 @@ export default {
   color: #999;
   font-weight: bold;
   margin-top: 300px;
+}
+
+.match-containr {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rbga(0,0,0,0.8)
 }
 </style>

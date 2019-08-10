@@ -2,18 +2,35 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const router = require("./rotas");
-const servidor = express();
 require("dotenv").config();
 
-servidor.use(cors());
-servidor.use(express.json());
+const app = express();
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
+
+const connectedUsers = {}
+
+io.on('connection', socket => {
+  const { user } = socket.handshake.query
+  connectedUsers[user] = socket.id;
+})
+
+app.use((req, res, next) => {
+  req.io = io
+  req.connectedUsers = connectedUsers
+  return next()
+})
+
+app.use(cors());
+app.use(express.json());
 
 mongoose.connect(process.env.DB_URI, {
   useNewUrlParser: true
 });
-servidor.use("/", express.static(__dirname + "/../../frontend/dist"));
-servidor.use(router);
+app.use("/", express.static(__dirname + "/../../frontend/dist"));
+app.use(router);
 const port = process.env.PORT || 9999;
-servidor.listen(port, function () {
+
+server.listen(port, function () {
   console.log(`Servidor executando em ${port}`)
 });

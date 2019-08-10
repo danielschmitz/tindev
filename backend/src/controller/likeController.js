@@ -5,21 +5,29 @@ module.exports = {
     const { IdDev } = req.params;
     const { usuario } = req.headers;
 
-    const usuarioLogado = await Dev.findById(usuario);
-    const usuarioASeDarLike = await Dev.findById(IdDev);
+    const loggedDev = await Dev.findById(usuario);
+    const targetDev = await Dev.findById(IdDev);
 
-    if (!usuarioASeDarLike) {
+    if (!targetDev) {
       return res.status(400).json({ erro: "Desenvolvedor não existe" });
     }
 
-    if (usuarioASeDarLike.likes.includes(usuarioLogado._id)) {
+    if (targetDev.likes.includes(loggedDev._id)) {
       console.log("Deu match!");
+      const loggedSocket = req.connectedUsers[user];
+      const targetSocket = req.connectedUsers[devId];
+      if (loggedSocket) {
+        req.io.to(loggedSocket).emit('math', targetDev)
+      }
+      if (targetSocket) {
+        req.io.to(targetSocket).emit('match', loggedDev)
+      }
     }
 
-    usuarioLogado.likes.push(usuarioASeDarLike._id);
+    loggedDev.likes.push(targetDev._id);
 
-    await usuarioLogado.save();
+    await loggedDev.save();
 
-    return res.json(usuarioLogado);
+    return res.json(loggedDev);
   }
 };
