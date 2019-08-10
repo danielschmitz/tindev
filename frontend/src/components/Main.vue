@@ -1,5 +1,7 @@
 <template>
   <div class="main-container">
+     <img class="avatar" :src="store.user.avatar" />
+     <br/>
     <router-link to="/">
       <img src="../assets/logo.svg" alt="Tindev" />
     </router-link>
@@ -36,13 +38,15 @@
 <script>
 import api from '../servicos/api'
 import io from 'socket.io-client'
+import store from '../servicos/store'
 
 export default {
   name: 'Main',
   data: function () {
     return {
       usuarios: [],
-      matchDev: null
+      matchDev: null,
+      store
     }
   },
   computed: {
@@ -208,6 +212,14 @@ export default {
   font-size: 18px;
   margin-top: 30px;
   cursor: pointer;
+}
+
+.main-container .avatar {
+    width:75px;
+    height:75px;
+    border-radius: 50%;
+    border: 2px solid #aaa;
+
 }
 
 </style>

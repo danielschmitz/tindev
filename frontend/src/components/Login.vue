@@ -10,6 +10,7 @@
 
 <script>
 import api from '../servicos/api'
+import store from '../servicos/store'
 export default {
   name: 'Login',
   data: function () {
@@ -24,7 +25,9 @@ export default {
       const resposta = await api.post('/devs', {
         username: this.usuario
       })
-      const { _id } = resposta.data
+
+      const { _id, avatar, nome } = resposta.data
+      store.user = { _id, avatar, nome }
       this.$router.push({ path: `/dev/${_id}` })
     }
   }
