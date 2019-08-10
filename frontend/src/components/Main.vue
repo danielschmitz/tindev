@@ -1,11 +1,11 @@
 <template>
   <div class="main-container">
-     <img class="avatar" :src="store.user.avatar" />
-     <br/>
+    <img class="avatar" :src="store.user.avatar" />
+    <br />
     <router-link to="/">
       <img src="../assets/logo.svg" alt="Tindev" />
     </router-link>
-     <DotLoader :loading="loading" color="#df4723" class="loader"/>
+    <DotLoader :loading="loading" color="#df4723" class="loader" />
 
     <ul v-if="usuarios.length > 0 && !loading">
       <li v-for="usuario in usuarios" :key="usuario._id">
@@ -15,7 +15,7 @@
           <p>{{usuario.bio}}</p>
         </footer>
         <div class="buttons">
-          <button type="button" @click="darDisLike(usuario._id)">
+          <button type="button" @click="darDisLike($event, usuario._id)">
             <img src="../assets/dislike.svg" alt="Dislike" />
           </button>
           <button type="button" @click="darLike($event,usuario._id)">
@@ -24,12 +24,10 @@
         </div>
       </li>
     </ul>
-    <div v-if="usuarios.length == 0 && !loading" class="empty">
-      Acabou :(
-    </div>
+    <div v-if="usuarios.length == 0 && !loading" class="empty">Acabou :(</div>
     <div v-if="itsamatch" class="match-container">
-      <img src="../assets/itsamatch.png" alt="Its a match"/>
-      <img class="avatar" :src="matchDev.avatar" :alt="matchDev.nome"/>
+      <img src="../assets/itsamatch.png" alt="Its a match" />
+      <img class="avatar" :src="matchDev.avatar" :alt="matchDev.nome" />
       <strong>{{matchDev.nome}}</strong>
       <p>{{matchDev.bio}}</p>
       <button type="button" @click="onButtonCloseClick">Fechar</button>
@@ -92,14 +90,16 @@ export default {
   methods:
   {
     async darLike (event, id) {
-      event.target.disabled = true
+      event.target.className = 'loading'
 
       await api.post(`devs/${id}/likes`, null, {
         headers: { usuario: this.id }
       })
       this.usuarios = this.usuarios.filter(usuario => usuario._id !== id)
     },
-    async darDisLike (id) {
+    async darDisLike (event, id) {
+      event.target.className = 'loading'
+
       await api.post(`devs/${id}/dislikes`, null, {
         headers: { usuario: this.id }
       })
@@ -124,7 +124,7 @@ export default {
 
 .loader {
   margin: 0 auto;
-  padding-top:100px;
+  padding-top: 100px;
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -206,20 +206,20 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: rgba(0 , 0, 0, 0.8)
+  background: rgba(0, 0, 0, 0.8);
 }
 
 .match-container .avatar {
-    width:200px;
-    height:200px;
-    border-radius: 50%;
-    border: 5px solid #fff;
-    margin: 30px 0;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  margin: 30px 0;
 }
 
 .match-container strong {
   font-size: 32px;
-  color: #fff
+  color: #fff;
 }
 
 .match-container p {
@@ -231,7 +231,7 @@ export default {
 }
 
 .match-container button {
-  border:0px;
+  border: 0px;
   background: none;
   font-weight: bold;
   color: #fff;
@@ -241,11 +241,17 @@ export default {
 }
 
 .main-container .avatar {
-    width:75px;
-    height:75px;
-    border-radius: 50%;
-    border: 2px solid #aaa;
-
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  border: 2px solid #aaa;
 }
 
+.loading img {
+  opacity: 0;
+  animation: fadein 2s;
+  -moz-animation: fadein 2s; /* Firefox */
+  -webkit-animation: fadein 2s; /* Safari and Chrome */
+  -o-animation: fadein 2s; /* Opera */
+}
 </style>
