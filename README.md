@@ -57,7 +57,9 @@ A parte de configuração do deploy é formada por duas partes. Primeiro, config
     Estas ações são:
 
     1 - Ir no diretório backend e executar `npm install`
+
     2 - Ir no diretório frontend e executar `npm install`
+    
     3 - Ainda no diretório frontend, executar `npm run build` para compilar a aplicação 
 
     - O comando `npm start` irá iniciar o servidor `backend`
