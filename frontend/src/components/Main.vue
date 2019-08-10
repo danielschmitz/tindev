@@ -5,7 +5,9 @@
     <router-link to="/">
       <img src="../assets/logo.svg" alt="Tindev" />
     </router-link>
-    <ul v-if="usuarios.length > 0">
+     <DotLoader :loading="loading" color="#df4723" class="loader"/>
+
+    <ul v-if="usuarios.length > 0 && !loading">
       <li v-for="usuario in usuarios" :key="usuario._id">
         <img :src="usuario.avatar" :alt="usuario.nome" />
         <footer>
@@ -16,13 +18,13 @@
           <button type="button" @click="darDisLike(usuario._id)">
             <img src="../assets/dislike.svg" alt="Dislike" />
           </button>
-          <button type="button" @click="darLike(usuario._id)">
+          <button type="button" @click="darLike($event,usuario._id)">
             <img src="../assets/like.svg" alt="Like" />
           </button>
         </div>
       </li>
     </ul>
-    <div v-else class="empty">
+    <div v-if="usuarios.length == 0 && !loading" class="empty">
       Acabou :(
     </div>
     <div v-if="itsamatch" class="match-container">
@@ -39,13 +41,18 @@
 import api from '../servicos/api'
 import io from 'socket.io-client'
 import store from '../servicos/store'
+import { DotLoader } from '@saeris/vue-spinners'
 
 export default {
   name: 'Main',
+  components: {
+    DotLoader
+  },
   data: function () {
     return {
       usuarios: [],
       matchDev: null,
+      loading: false,
       store
     }
   },
@@ -54,30 +61,39 @@ export default {
     itsamatch: function () { return this.matchDev !== null }
   },
   async mounted () {
-    const socket = io(process.env.VUE_APP_API, {
-      query: { user: this.id }
-    })
-
-    socket.on('match', dev => {
-      console.log('Recebi o match de ', dev.nome)
-      this.matchDev = dev
-    })
-
-    socket.on('message', obj => {
-      this.$notify({
-        title: obj.title,
-        text: obj.message
+    try {
+      this.loading = true
+      const socket = io(process.env.VUE_APP_API, {
+        query: { user: this.id }
       })
-    })
 
-    const resposta = await api.get('/devs', { headers: {
-      usuario: this.id
-    } })
-    this.usuarios = resposta.data
+      socket.on('match', dev => {
+        console.log('Recebi o match de ', dev.nome)
+        this.matchDev = dev
+      })
+
+      socket.on('message', obj => {
+        this.$notify({
+          title: obj.title,
+          text: obj.message
+        })
+      })
+
+      const resposta = await api.get('/devs', { headers: {
+        usuario: this.id
+      } })
+      this.usuarios = resposta.data
+    } catch (error) {
+
+    } finally {
+      this.loading = false
+    }
   },
   methods:
   {
-    async darLike (id) {
+    async darLike (event, id) {
+      event.target.disabled = true
+
       await api.post(`devs/${id}/likes`, null, {
         headers: { usuario: this.id }
       })
@@ -102,6 +118,16 @@ export default {
   margin: 0 auto;
   padding: 50px 0;
   text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  margin: 0 auto;
+  padding-top:100px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .main-container ul {

@@ -1,31 +1,39 @@
 <template>
   <div class="login-container">
-    <form @submit.prevent="onSubmit">
+    <form @submit.prevent="onSubmit" v-show="!loading">
       <img src="../assets/logo.svg" alt="Tindev" />
       <input placeholder="Usuário do GitHub" v-model="usuario" />
-      <button type="submit">Enviar</button>
+      <button type="submit" >Enviar</button>
     </form>
+    <DotLoader :loading="loading" color="#df4723"/>
   </div>
 </template>
 
 <script>
 import api from '../servicos/api'
 import store from '../servicos/store'
+import { DotLoader } from '@saeris/vue-spinners'
+
 export default {
   name: 'Login',
+  components: {
+    DotLoader
+  },
   data: function () {
     return {
-      usuario: ''
+      usuario: '',
+      loading: false
     }
   },
   methods:
   {
     async onSubmit () {
       try {
+        this.loading = true
+
         const resposta = await api.post('/devs', {
           username: this.usuario
         })
-
         const { _id, avatar, nome } = resposta.data
         store.user = { _id, avatar, nome }
         this.$router.push({ path: `/dev/${_id}` })
@@ -35,6 +43,8 @@ export default {
           text: 'Usuário não encontrado',
           type: 'error'
         })
+      } finally {
+        this.loading = false
       }
     }
   }
