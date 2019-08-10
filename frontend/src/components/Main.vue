@@ -59,6 +59,13 @@ export default {
       this.matchDev = dev
     })
 
+    socket.on('message', obj => {
+      this.$notify({
+        title: obj.title,
+        text: obj.message
+      })
+    })
+
     const resposta = await api.get('/devs', { headers: {
       usuario: this.id
     } })

@@ -12,10 +12,14 @@ module.exports = {
       return res.status(400).json({ erro: "Desenvolvedor não existe" });
     }
 
+    req.io.emit('message', { title: "<3", message: `${loggedDev.nome} curtiu ${targetDev.nome} ` })
+
+
     if (targetDev.likes.includes(loggedDev._id)) {
       console.log("Deu match!");
       const loggedSocket = req.connectedUsers[usuario];
       const targetSocket = req.connectedUsers[IdDev];
+   
       if (loggedSocket) {
         console.log(`1) Enviando match do ${targetDev.nome} para ${loggedDev.nome}`)
         req.io.to(loggedSocket).emit('match', targetDev)
