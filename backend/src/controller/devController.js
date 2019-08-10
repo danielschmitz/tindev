@@ -11,7 +11,7 @@ module.exports = {
     ); // Acessará a API
     const { name, bio, avatar_url } = resposta.data;
     const dev = await Dev.create({
-      nome: name,
+      nome: name || username,
       usuario: username,
       bio,
       avatar: avatar_url
