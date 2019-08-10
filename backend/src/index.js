@@ -12,6 +12,7 @@ const connectedUsers = {}
 
 io.on('connection', socket => {
   const { user } = socket.handshake.query
+  console.log(`Registrei o user ${user} com id ${socket.id}`)
   connectedUsers[user] = socket.id;
 })
 
@@ -24,7 +25,7 @@ app.use((req, res, next) => {
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect(process.env.DB_URI, {
+mongoose.connect('mongodb://daniel:secret1@ds261077.mlab.com:61077/tindev', {
   useNewUrlParser: true
 });
 app.use("/", express.static(__dirname + "/../../frontend/dist"));

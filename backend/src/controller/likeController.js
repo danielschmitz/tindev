@@ -14,12 +14,14 @@ module.exports = {
 
     if (targetDev.likes.includes(loggedDev._id)) {
       console.log("Deu match!");
-      const loggedSocket = req.connectedUsers[user];
-      const targetSocket = req.connectedUsers[devId];
+      const loggedSocket = req.connectedUsers[usuario];
+      const targetSocket = req.connectedUsers[IdDev];
       if (loggedSocket) {
-        req.io.to(loggedSocket).emit('math', targetDev)
+        console.log(`1) Enviando match do ${targetDev.nome} para ${loggedDev.nome}`)
+        req.io.to(loggedSocket).emit('match', targetDev)
       }
       if (targetSocket) {
+        console.log(`2) Enviando match do ${loggedDev.nome} para ${targetDev.nome}`)
         req.io.to(targetSocket).emit('match', loggedDev)
       }
     }
