@@ -23,22 +23,42 @@
     <div v-else class="empty">
       Acabou :(
     </div>
+    <div v-if="itsamatch" class="match-container">
+      <img src="../assets/itsamatch.png" alt="Its a match"/>
+      <img class="avatar" :src="matchDev.avatar" :alt="matchDev.nome"/>
+      <strong>{{matchDev.nome}}</strong>
+      <p>{{matchDev.bio}}</p>
+      <button type="button" @click="onButtonCloseClick">Fechar</button>
+    </div>
   </div>
 </template>
 
 <script>
 import api from '../servicos/api'
+import io from 'socket.io-client'
+
 export default {
   name: 'Main',
   data: function () {
     return {
-      usuarios: []
+      usuarios: [],
+      matchDev: null
     }
   },
   computed: {
-    id: function () { return this.$route.params.id }
+    id: function () { return this.$route.params.id },
+    itsamatch: function () { return this.matchDev !== null }
   },
   async mounted () {
+    const socket = io(process.env.VUE_APP_API, {
+      query: { user: this.id }
+    })
+
+    socket.on('match', dev => {
+      console.log('Recebi o match de ', dev.nome)
+      this.matchDev = dev
+    })
+
     const resposta = await api.get('/devs', { headers: {
       usuario: this.id
     } })
@@ -57,6 +77,9 @@ export default {
         headers: { usuario: this.id }
       })
       this.usuarios = this.usuarios.filter(usuario => usuario._id !== id)
+    },
+    onButtonCloseClick () {
+      this.matchDev = null
     }
   }
 }
@@ -135,4 +158,49 @@ export default {
   font-weight: bold;
   margin-top: 300px;
 }
+
+.match-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0 , 0, 0, 0.8)
+}
+
+.match-container .avatar {
+    width:200px;
+    height:200px;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    margin: 30px 0;
+}
+
+.match-container strong {
+  font-size: 32px;
+  color: #fff
+}
+
+.match-container p {
+  margin-top: 10px;
+  font-size: 20px;
+  line-height: 30px;
+  max-width: 400px;
+  color: #fff;
+}
+
+.match-container button {
+  border:0px;
+  background: none;
+  font-weight: bold;
+  color: #fff;
+  font-size: 18px;
+  margin-top: 30px;
+  cursor: pointer;
+}
+
 </style>
