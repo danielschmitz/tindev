@@ -21,14 +21,21 @@ export default {
   methods:
   {
     async onSubmit () {
-      console.log('onSubmit')
-      const resposta = await api.post('/devs', {
-        username: this.usuario
-      })
+      try {
+        const resposta = await api.post('/devs', {
+          username: this.usuario
+        })
 
-      const { _id, avatar, nome } = resposta.data
-      store.user = { _id, avatar, nome }
-      this.$router.push({ path: `/dev/${_id}` })
+        const { _id, avatar, nome } = resposta.data
+        store.user = { _id, avatar, nome }
+        this.$router.push({ path: `/dev/${_id}` })
+      } catch (error) {
+        this.$notify({
+          title: 'Erro',
+          text: 'Usuário não encontrado',
+          type: 'error'
+        })
+      }
     }
   }
 }
