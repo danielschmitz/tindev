@@ -6,17 +6,17 @@
       <button type="submit" >Enviar</button>
     </form>
     <DotLoader :loading="loading" color="#df4723"/>
-    <footer>
+    <div class="creditos">
       Projeto originalmente criado por <a href="https://rocketseat.com.br">RocketSeat</a>
       <br/>
       Implementação em Vue por Daniel Schmitz
       <br/>
       <a href="https://github.com/danielschmitz/tindev">https://github.com/danielschmitz/tindev</a>
-    </footer>
+    </div>
   </div>
 </template>
 
-<script>
+<script scoped>
 import api from '../servicos/api'
 import store from '../servicos/store'
 import { DotLoader } from '@saeris/vue-spinners'
@@ -99,7 +99,7 @@ export default {
   cursor: pointer;
 }
 
-footer {
+.creditos {
   position: absolute;
   bottom:20px;
   color: #555;
