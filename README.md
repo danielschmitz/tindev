@@ -1,12 +1,30 @@
-# tindev
+# Tindev
 
 Um "tinder" para devs utilizando VueJS e Vue Native e NodeJS.
 
+<!-- TOC -->
+
+- [Tindev](#tindev)
+    - [Observações importantes](#observações-importantes)
+    - [Deploy no heroku](#deploy-no-heroku)
+        - [Prerequisitos](#prerequisitos)
+        - [Criando o deploy](#criando-o-deploy)
+        - [Configurando o deploy](#configurando-o-deploy)
+    - [O uso de arquivos .env (environment)](#o-uso-de-arquivos-env-environment)
+    - [Diferenças entre React e Vue](#diferenças-entre-react-e-vue)
+    - [Se você chegou até aqui...](#se-você-chegou-até-aqui)
+
+<!-- /TOC -->
+
+## Observações importantes
+
+Demo: https://tindevue.herokuapp.com
+
 Uma cópia da Semana Omnistack da Rockseat, que fez em React (http://bit.ly/semana-omnistack-agosto)
 
-Não usei o Atlas (pede cartão de crédito). Usei o mlab.com
+Não usei o Atlas (me pediu cartão de crédito, talvez nao aconteça com você). Usei o mlab.com
 
-Ao invés de colocar a URL do mongo direto no código, e deixar isso público no github, usei dotenv
+Ao invés de colocar a URL do mongo direto no código, e deixar isso público no github, usei dotenv. A URL do banco de dados deve ser colocada em `backend\.env`
 
 ## Deploy no heroku
 
@@ -78,3 +96,57 @@ Após realizar esses passos e entender como funciona, basta fazer um PUSH no seu
 
 Ao terminar o build, se aparecer a mensagem `Build succeeded`, basta clicar no botão `Open app` para ver sua aplicação sendo executada.
 
+## O uso de arquivos .env (environment)
+
+Em um projeto real, é muito importante separar os valores de configuração do software do software em si. Por exemplo, a string de conexão com o banco de dados mongodb é um valor que deve ser alterado para cada usuário. 
+
+Para resolver esse problema da forma correta, usa-se os arquivos `.env` que são chamados de arquivos de environment. Um sistema pode inclusive, possuir arquivos de environment dependendo se o mesmo está em desenvovlimento, em testes ou em produção. 
+
+No backend, temos a princípio o arquivo `.env.example` que é um exemplo de como o arquivo `.env` deve ser. Sua primeira ação ao realizar o clone deste projeto é gerar o arquivo `.env` a partir de sua cópia. 
+
+O arquivo `.env` nao está versionado no git por um motivo. Em uma grande equipe de desenvolvimento, cada desenvolvedor pode ter suas configurações próprias, que não devem ser enviadas para o repositório git.
+
+Se você não compreende bem os arquivos .env, estude! Eles são importantes no seu dia a dia e ter o domínio sobre eles irá melhorar suas chances de adquirir uma boa oportunidade de emprego.
+
+## Diferenças entre React e Vue
+
+A criação desse projeto não tem como objetivo mostrar quem é melhor que quem. Não seja um programador que "puxe sardinha" para qualquer lado. Seja um programador que saiba as diferenças das tecnologias e extraia o melhor delas. 
+
+Vamos ver que, React e Vue não são assim tão diferentes. No React, o arquivo que representa a aplicação em si é assim: 
+
+```js
+import React from 'react';
+import './App.css';
+
+import Routes from './routes';
+
+function App() {
+  return <Routes />;
+}
+
+export default App;
+```
+
+No Vue, temos:
+
+```js
+import Vue from 'vue'
+import App from './App.vue'
+import router from './router'
+
+Vue.config.productionTip = false
+
+
+new Vue({
+  router,
+  render: h => h(App)
+}).$mount('#app')
+```
+
+Veja que existe uma semelhança entre eles. O Angular nao é diferente. O importante neste ponto é você conhecer bem a linguagem que está trabalhando.
+
+## Se você chegou até aqui... 
+
+Vou te dar o melhor conselho que um DEV possa te dar. Não tenha tecnologia de estimação. Adapta-se sempre às novas tecnologias do mercado. Entre Vuejs, React ou Angular, foque em javascript, aprenda BEM essa linauagem, domine-a por completo (incluindo ES6) e os frameworks que a usam você irá "tirar de letra". 
+
+É isso, bons estudos!

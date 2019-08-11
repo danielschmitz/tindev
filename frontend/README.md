@@ -1,5 +1,7 @@
 # frontend
 
+Este é o frontend do projeto tindev. 
+
 ## Project setup
 ```
 yarn install
