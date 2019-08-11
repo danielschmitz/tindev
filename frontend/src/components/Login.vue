@@ -6,6 +6,13 @@
       <button type="submit" >Enviar</button>
     </form>
     <DotLoader :loading="loading" color="#df4723"/>
+    <footer>
+      Projeto originalmente criado por <a href="https://rocketseat.com.br">RocketSeat</a>
+      <br/>
+      Implementação em Vue por Daniel Schmitz
+      <br/>
+      <a href="https://github.com/danielschmitz/tindev">https://github.com/danielschmitz/tindev</a>
+    </footer>
   </div>
 </template>
 
@@ -90,5 +97,13 @@ export default {
   font-weight: bold;
   color: #fff;
   cursor: pointer;
+}
+
+footer {
+  position: absolute;
+  bottom:20px;
+  color: #555;
+  text-align: center;
+  font-size:14px;
 }
 </style>
