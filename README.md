@@ -20,9 +20,9 @@ Um "tinder" para devs utilizando VueJS e Vue Native e NodeJS.
 
 Demo: https://tindevue.herokuapp.com
 
-Uma cópia da Semana Omnistack da Rockseat, que fez em React (http://bit.ly/semana-omnistack-agosto)
+Uma cópia da Semana Omnistack da Rocketseat, que fez em React (http://bit.ly/semana-omnistack-agosto)
 
-Não usei o Atlas (me pediu cartão de crédito, talvez nao aconteça com você). Usei o mlab.com
+Não usei o Atlas (me pediu cartão de crédito, talvez não aconteça com você). Usei o mlab.com
 
 Ao invés de colocar a URL do mongo direto no código, e deixar isso público no GitHub, usei dotenv. A URL do banco de dados deve ser colocada em `backend\.env`
 
@@ -30,13 +30,13 @@ Ao invés de colocar a URL do mongo direto no código, e deixar isso público no
 
 Esse projeto pode ser acessado em: https://tindevue.herokuapp.com
 
-Para que se possa fazer esse tipo de integração com o heroku, é necessário realizar alguns passos a mais em relação ao conteúdo que o diego3g está publicando. Sugiro que faça essa integração após terminar a 2a aula sobre frontend.
+Para que se possa fazer esse tipo de integração com o heroku, é necessário realizar alguns passos a mais em relação ao conteúdo que o diego3g está publicando. Sugiro que faça essa integração após terminar a 2ª aula sobre frontend.
 
 Vou tentar resumir os passos aqui. Se tiver dúvidas pode abrir uma ISSUE que eu tento te ajudar.
 
 ### Prerequisitos
 
-- Tem o projeto no GitHub. Você pode fazer um fork do meu use julgar necessário. Mas se quer realmente aprender é melhor escrever todo o código acompanhando as aulas da Rockseat
+- Tem o projeto no GitHub. Você pode fazer um fork do meu se julgar necessário. Mas se quer realmente aprender é melhor escrever todo o código acompanhando as aulas da Rocketseat
 
 - Ter uma conta no Heroku.com. É de graça!
 
@@ -48,7 +48,7 @@ Vou tentar resumir os passos aqui. Se tiver dúvidas pode abrir uma ISSUE que eu
 
 <kbd><img src="https://user-images.githubusercontent.com/1509692/62713654-78f3ea80-b9d3-11e9-89c4-f47767700b76.png" border="2"/></kbd>
 
-- Se você ainda nao relacionou a sua conta do herouku a conta do GitHub, surgirá um botao para "conectar" as duas contas
+- Se você ainda não relacionou a sua conta do herouku a conta do GitHub, surgirá um botao para "conectar" as duas contas
 
 - Com a conta conectada, surge algo parecido com a imagem a seguir:
 
@@ -64,7 +64,7 @@ A parte de configuração do deploy é formada por duas partes. Primeiro, config
 
 - Nesta configuração você precisa definir o `NPM_CONFIG_PRODUCTION` como `false` para que o deploy do Heroku instale também as `devDependencies`. Defina também `DB_URI` que é a minha url de conexão com o mlab. Se você estiver seguindo religiosamente a aula da Rocketseat, não precisa definir `DB_URI`. Eu só acho importante deixar strings de conexão e senhas e coisas sensíveis em variáveis de ambiente, assim temos uma melhora na segurança da app.
 
-- Após definir as variáveis de ambiente, é preciso compreender que o Heroku executa dois comandos internos na sua aplicação. São eles: `npm run build` e `npm start`. Esses dois comandos estão no `package.json` do projeto (e nao da pasta frontend ou backend) 
+- Após definir as variáveis de ambiente, é preciso compreender que o Heroku executa dois comandos internos na sua aplicação. São eles: `npm run build` e `npm start`. Esses dois comandos estão no `package.json` do projeto (e não da pasta frontend ou backend) 
 
     - O comando `npm run build` realiza uma série de ações:
 
@@ -104,7 +104,7 @@ Para resolver esse problema da forma correta, usa-se os arquivos `.env` que são
 
 No backend, temos a princípio o arquivo `.env.example` que é um exemplo de como o arquivo `.env` deve ser. Sua primeira ação ao realizar o clone deste projeto é gerar o arquivo `.env` a partir de sua cópia. 
 
-O arquivo `.env` nao está versionado no git por um motivo. Em uma grande equipe de desenvolvimento, cada desenvolvedor pode ter suas configurações próprias, que não devem ser enviadas para o repositório git.
+O arquivo `.env` não está versionado no git por um motivo. Em uma grande equipe de desenvolvimento, cada desenvolvedor pode ter suas configurações próprias, que não devem ser enviadas para o repositório git.
 
 Se você não compreende bem os arquivos `.env`, estude! Eles são importantes no seu dia a dia e ter o domínio sobre eles irá melhorar suas chances de adquirir uma boa oportunidade de emprego.
 
@@ -143,7 +143,7 @@ new Vue({
 }).$mount('#app')
 ```
 
-Veja que existe uma semelhança entre eles. O Angular nao é diferente. O importante neste ponto é você conhecer bem a linguagem que está trabalhando.
+Veja que existe uma semelhança entre eles. O Angular não é diferente. O importante neste ponto é você conhecer bem a linguagem que está trabalhando.
 
 ## Se você chegou até aqui... 
 
