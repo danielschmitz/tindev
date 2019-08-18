@@ -106,7 +106,7 @@ No backend, temos a princípio o arquivo `.env.example` que é um exemplo de com
 
 O arquivo `.env` nao está versionado no git por um motivo. Em uma grande equipe de desenvolvimento, cada desenvolvedor pode ter suas configurações próprias, que não devem ser enviadas para o repositório git.
 
-Se você não compreende bem os arquivos .env, estude! Eles são importantes no seu dia a dia e ter o domínio sobre eles irá melhorar suas chances de adquirir uma boa oportunidade de emprego.
+Se você não compreende bem os arquivos `.env`, estude! Eles são importantes no seu dia a dia e ter o domínio sobre eles irá melhorar suas chances de adquirir uma boa oportunidade de emprego.
 
 ## Diferenças entre React e Vue
 
