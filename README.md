@@ -147,6 +147,6 @@ Veja que existe uma semelhança entre eles. O Angular nao é diferente. O import
 
 ## Se você chegou até aqui... 
 
-Vou te dar o melhor conselho que um DEV possa te dar. Não tenha tecnologia de estimação. Adapta-se sempre às novas tecnologias do mercado. Entre Vuejs, React ou Angular, foque em javascript, aprenda BEM essa linauagem, domine-a por completo (incluindo ES6) e os frameworks que a usam você irá "tirar de letra". 
+Vou te dar o melhor conselho que um DEV possa te dar. Não tenha tecnologia de estimação. Adapta-se sempre às novas tecnologias do mercado. Entre Vuejs, React ou Angular, foque em javascript, aprenda BEM essa linguagem, domine-a por completo (incluindo ES6) e os frameworks que a usam você irá "tirar de letra".
 
 É isso, bons estudos!
