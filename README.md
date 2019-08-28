@@ -147,6 +147,6 @@ Veja que existe uma semelhança entre eles. O Angular não é diferente. O impor
 
 ## Se você chegou até aqui... 
 
-Vou te dar o melhor conselho que um DEV possa te dar. Não tenha tecnologia de estimação. Adapte-se sempre às novas tecnologias do mercado. Entre VueJS, React ou Angular, foque em Javascript, aprenda BEM essa linguagem, domine-a por completo (incluindo ES6) e os frameworks que a usam; você irá "tirar de letra". 
+Vou te dar o melhor conselho que um DEV possa te dar. Não tenha tecnologia de estimação. Adapte-se sempre às novas tecnologias do mercado. Entre VueJS, React ou Angular, foque em Javascript, aprenda BEM essa linguagem, domine-a por completo (incluindo ES6) e os frameworks que a usam você irá "tirar de letra". 
 
 É isso, bons estudos!
