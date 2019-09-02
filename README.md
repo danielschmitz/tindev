@@ -20,41 +20,41 @@ Um "tinder" para devs utilizando VueJS e Vue Native e NodeJS.
 
 Demo: https://tindevue.herokuapp.com
 
-Uma cópia da Semana Omnistack da Rockseat, que fez em React (http://bit.ly/semana-omnistack-agosto)
+Uma cópia da Semana Omnistack da Rocketseat, que fez em React (http://bit.ly/semana-omnistack-agosto)
 
-Não usei o Atlas (me pediu cartão de crédito, talvez nao aconteça com você). Usei o mlab.com
+Não usei o Atlas (me pediu cartão de crédito, talvez não aconteça com você). Usei o mlab.com
 
-Ao invés de colocar a URL do mongo direto no código, e deixar isso público no github, usei dotenv. A URL do banco de dados deve ser colocada em `backend\.env`
+Ao invés de colocar a URL do mongo direto no código, e deixar isso público no GitHub, usei dotenv. A URL do banco de dados deve ser colocada em `backend\.env`
 
 ## Deploy no heroku
 
 Esse projeto pode ser acessado em: https://tindevue.herokuapp.com
 
-Para que se possa fazer esse tipo de integração com o heroku, é necessário realizar alguns passos a mais em relação ao conteúdo que o diego3g está publicando. Sugiro que faça essa integração após terminar a 2a aula sobre frontend.
+Para que se possa fazer esse tipo de integração com o heroku, é necessário realizar alguns passos a mais em relação ao conteúdo que o diego3g está publicando. Sugiro que faça essa integração após terminar a 2ª aula sobre frontend.
 
 Vou tentar resumir os passos aqui. Se tiver dúvidas pode abrir uma ISSUE que eu tento te ajudar.
 
 ### Prerequisitos
 
-- Tem o projeto no github. Você pode fazer um fork do meu use julgar necessário. Mas se quer realmente aprender é melhor escrever todo o código acompanhando as aulas da Rockseat
+- Tem o projeto no GitHub. Você pode fazer um fork do meu se julgar necessário. Mas se quer realmente aprender é melhor escrever todo o código acompanhando as aulas da Rocketseat
 
 - Ter uma conta no Heroku.com. É de graça!
 
 ### Criando o deploy
 
-- Após logar no heroku pelo site deles, crie em "Create new App". Encontre um nome pra app e clique em Next.
+- Após logar no Heroku pelo site deles, crie em "Create new App". Encontre um nome pra app e clique em Next.
 
 - Na próxima página, você deve conectar a app a um projeto GitHub, como na figura a seguir:
 
 <kbd><img src="https://user-images.githubusercontent.com/1509692/62713654-78f3ea80-b9d3-11e9-89c4-f47767700b76.png" border="2"/></kbd>
 
-- Se vc ainda nao relacionou a sua conta do herouku a conta do github, surgirá um botao para "conectar" as duas contas
+- Se você ainda não relacionou a sua conta do herouku a conta do GitHub, surgirá um botao para "conectar" as duas contas
 
 - Com a conta conectada, surge algo parecido com a imagem a seguir:
 
 <kbd><img src="https://user-images.githubusercontent.com/1509692/62713807-b6587800-b9d3-11e9-8b15-cbe43f0311b0.png"/></kbd>
 
-- Ou seja, sempre que houver um PUSH no seu projeto (branch master), o heroku vai realizar um deploy automatico.
+- Ou seja, sempre que houver um PUSH no seu projeto (branch master), o Heroku vai realizar um deploy automatico.
 
 ### Configurando o deploy
 
@@ -62,9 +62,9 @@ A parte de configuração do deploy é formada por duas partes. Primeiro, config
 
 <kbd><img src="https://user-images.githubusercontent.com/1509692/62714058-341c8380-b9d4-11e9-8df2-79b0aece68cb.png"/></kbd>
 
-- Esta configuração você precisa definir o `NPM_CONFIG_PRODUCTION` como `false` para que o deploy do heroku instale também as `devDependencies`. Defina também `DB_URI` que é a minha url de conexão com o mlab. Se você estiver seguindo religiosamente a aula da rockseat, não precisa definir `DB_URI`. Eu só acho importante deixar strings de conexão e senhas e coisas sensíveis em variáveis de ambiente, assim temos uma melhora na segurança da app
+- Nesta configuração você precisa definir o `NPM_CONFIG_PRODUCTION` como `false` para que o deploy do Heroku instale também as `devDependencies`. Defina também `DB_URI` que é a minha url de conexão com o mlab. Se você estiver seguindo religiosamente a aula da Rocketseat, não precisa definir `DB_URI`. Eu só acho importante deixar strings de conexão e senhas e coisas sensíveis em variáveis de ambiente, assim temos uma melhora na segurança da app.
 
-- Após definir as variáveis de ambiente, é preciso compreender que o Heroku executa dois comandos internos na sua aplicação. São eles: `npm run build` e `npm start`. Esses dois comandos estão no `package.json` do projeto (e nao da pasta frontend ou backend) 
+- Após definir as variáveis de ambiente, é preciso compreender que o Heroku executa dois comandos internos na sua aplicação. São eles: `npm run build` e `npm start`. Esses dois comandos estão no `package.json` do projeto (e não da pasta frontend ou backend) 
 
     - O comando `npm run build` realiza uma série de ações:
 
@@ -88,9 +88,9 @@ A parte de configuração do deploy é formada por duas partes. Primeiro, config
 
 <img src="https://user-images.githubusercontent.com/1509692/62714901-cbcea180-b9d5-11e9-84b4-122909c3b175.png"/>
 
-Em **1** incluímos a biblioiteca `dotenv`. Ela é responsável em pegar valores do arquivo `.env` ou das configurações do heroku. Por exemplo, usamos em **2** o DB_URI. Em **3** configuramos o que chamamos de "Servidor estático". O servidor estático está apontado para `__dirname + "/../../frontend/dist"` que é justamente o diretório compilado da aplicação que foi gerada pelo `npm run build` do frontend. Em **4** configuramos uma porta, que pode ser a porta do servidor heroku (process.env.PORT) ou a porta 9999. 
+Em **1** incluímos a biblioiteca `dotenv`. Ela é responsável em pegar valores do arquivo `.env` ou das configurações do Heroku. Por exemplo, usamos em **2** o DB_URI. Em **3** configuramos o que chamamos de "Servidor estático". O servidor estático está apontado para `__dirname + "/../../frontend/dist"` que é justamente o diretório compilado da aplicação que foi gerada pelo `npm run build` do frontend. Em **4** configuramos uma porta, que pode ser a porta do servidor Heroku (process.env.PORT) ou a porta 9999. 
 
-Após realizar esses passos e entender como funciona, basta fazer um PUSH no seu código do github para ver o heroku trabalhando sozinho no deploy:
+Após realizar esses passos e entender como funciona, basta fazer um PUSH no seu código do GitHub para ver o Heroku trabalhando sozinho no deploy:
 
 <kbd><img src="https://user-images.githubusercontent.com/1509692/62715291-96768380-b9d6-11e9-993d-f914f15ba573.png"/></kbd>
 
@@ -104,9 +104,9 @@ Para resolver esse problema da forma correta, usa-se os arquivos `.env` que são
 
 No backend, temos a princípio o arquivo `.env.example` que é um exemplo de como o arquivo `.env` deve ser. Sua primeira ação ao realizar o clone deste projeto é gerar o arquivo `.env` a partir de sua cópia. 
 
-O arquivo `.env` nao está versionado no git por um motivo. Em uma grande equipe de desenvolvimento, cada desenvolvedor pode ter suas configurações próprias, que não devem ser enviadas para o repositório git.
+O arquivo `.env` não está versionado no git por um motivo. Em uma grande equipe de desenvolvimento, cada desenvolvedor pode ter suas configurações próprias, que não devem ser enviadas para o repositório git.
 
-Se você não compreende bem os arquivos .env, estude! Eles são importantes no seu dia a dia e ter o domínio sobre eles irá melhorar suas chances de adquirir uma boa oportunidade de emprego.
+Se você não compreende bem os arquivos `.env`, estude! Eles são importantes no seu dia a dia e ter o domínio sobre eles irá melhorar suas chances de adquirir uma boa oportunidade de emprego.
 
 ## Diferenças entre React e Vue
 
@@ -143,10 +143,10 @@ new Vue({
 }).$mount('#app')
 ```
 
-Veja que existe uma semelhança entre eles. O Angular nao é diferente. O importante neste ponto é você conhecer bem a linguagem que está trabalhando.
+Veja que existe uma semelhança entre eles. O Angular não é diferente. O importante neste ponto é você conhecer bem a linguagem que está trabalhando.
 
 ## Se você chegou até aqui... 
 
-Vou te dar o melhor conselho que um DEV possa te dar. Não tenha tecnologia de estimação. Adapta-se sempre às novas tecnologias do mercado. Entre Vuejs, React ou Angular, foque em javascript, aprenda BEM essa linguagem, domine-a por completo (incluindo ES6) e os frameworks que a usam você irá "tirar de letra".
+Vou te dar o melhor conselho que um DEV possa te dar. Não tenha tecnologia de estimação. Adapte-se sempre às novas tecnologias do mercado. Entre VueJS, React ou Angular, foque em Javascript, aprenda BEM essa linguagem, domine-a por completo (incluindo ES6) e os frameworks que a usam. Você irá "tirar de letra". 
 
 É isso, bons estudos!
