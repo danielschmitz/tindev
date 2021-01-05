@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@saeris/vue-spinners": "^1.0.8",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "core-js": "^2.6.5",
     "socket.io-client": "^2.2.0",
     "vue": "^2.6.10",
